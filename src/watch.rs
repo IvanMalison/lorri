@@ -74,7 +74,7 @@ impl Watch {
                 if let notify::EventKind::Modify(notify::event::ModifyKind::Metadata(mk)) =
                     &event.kind
                 {
-                    if mk == &notify::event::MetadataKind::Permissions {
+                    if mk == &notify::event::MetadataKind::Any {
                         return None;
                     }
                 }
