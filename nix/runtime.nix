@@ -3,11 +3,11 @@
   closureInfo, runCommand, writeText, buildEnv,
 
   # Actual dependencies to propagate:
-  bash, coreutils }:
+  bash, coreutils, gitFull }:
 let
   tools = buildEnv {
     name = "lorri-runtime-tools";
-    paths = [ coreutils bash ];
+    paths = [ coreutils bash gitFull ];
   };
 
   runtimeClosureInfo = closureInfo {
