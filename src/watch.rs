@@ -71,6 +71,13 @@ impl Watch {
             Err(err) => panic!("notify error: {}", err),
             Ok(event) => {
                 self.log_event(&event);
+                if let notify::EventKind::Modify(notify::event::ModifyKind::Metadata(mk)) =
+                    &event.kind
+                {
+                    if mk == &notify::event::MetadataKind::Permissions {
+                        return None;
+                    }
+                }
                 if event.paths.is_empty() {
                     Some(Err(EventError::EventHasNoFilePath(event)))
                 } else {
